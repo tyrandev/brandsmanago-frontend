@@ -1,0 +1,32 @@
+section.hero-section {
+  padding-right: 42px;
+  padding-left: 42px;
+  min-height: 100vh;
+}
+
+.forma-sint {
+  margin-top: 110px;
+  margin-bottom: 20px;
+  width: 775px;
+  height: auto;
+}
+
+.hero-img {
+  border-radius: 5px;
+  width: 100%;
+  min-height: 750px;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (max-width: 970px) {
+  .forma-sint {
+    width: 100%;
+  }
+}
+
+@media (max-width: 850px) {
+  section.hero-section {
+    padding: 16px;
+  }
+}
