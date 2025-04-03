@@ -156,6 +156,6 @@
 
 @media (max-width: 470px) {
   .swiper {
-    min-width: 2500px;
+    min-width: 600px;
   }
 }
