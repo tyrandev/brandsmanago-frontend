@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
   const banner = document.querySelector(".banner");
   let bannerInitiallyAdded = false;
+  let totalItemsToLoad = 0;
+  let currentItemsLoaded = 0;
 
   function createProductItem(i) {
     const productItem = document.createElement("div");
@@ -31,24 +33,60 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function updateProductGrid(itemsPerPage) {
+    totalItemsToLoad = parseInt(itemsPerPage);
+    currentItemsLoaded = 0;
     productGrid.innerHTML = "";
-    const totalItems = parseInt(itemsPerPage);
+    loadInitialProducts();
+  }
 
-    for (let i = 0; i < totalItems; i++) {
+  function loadInitialProducts() {
+    let initialLoadCount =
+      totalItemsToLoad === 24 || totalItemsToLoad === 36 ? 8 : 6;
+    if (bannerInitiallyAdded) {
+      initialLoadCount = 8;
+    }
+
+    for (let i = 0; i < initialLoadCount; i++) {
       if (i === 5 && !bannerInitiallyAdded) {
         const bannerClone = banner.cloneNode(true);
         productGrid.appendChild(bannerClone);
+        bannerInitiallyAdded = true;
       }
+
       const productItem = createProductItem(i);
       productGrid.appendChild(productItem);
     }
 
-    if (!bannerInitiallyAdded) {
-      bannerInitiallyAdded = true;
-    }
-
     if (bannerInitiallyAdded) {
       banner.style.display = "none";
+    }
+
+    currentItemsLoaded = initialLoadCount;
+
+    if (totalItemsToLoad > initialLoadCount) {
+      window.addEventListener("scroll", onScroll);
+    }
+  }
+
+  function loadMoreProducts() {
+    const startIndex = currentItemsLoaded;
+    const endIndex = Math.min(currentItemsLoaded + 4, totalItemsToLoad);
+
+    for (let i = startIndex; i < endIndex; i++) {
+      const productItem = createProductItem(i);
+      productGrid.appendChild(productItem);
+    }
+
+    currentItemsLoaded = endIndex;
+
+    if (currentItemsLoaded >= totalItemsToLoad) {
+      window.removeEventListener("scroll", onScroll);
+    }
+  }
+
+  function onScroll() {
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight) {
+      loadMoreProducts();
     }
   }
 
