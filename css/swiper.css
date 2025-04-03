@@ -1,52 +1,64 @@
-.featured-products {
-  height: 600px;
-  width: 100%;
-  padding-top: 70px;
-  margin-bottom: 125px;
-  padding-right: 42px;
-  padding-left: 42px;
-}
-
 .featured-products h2 {
   font-size: 42px;
   font-weight: 700;
+  padding-left: 12px;
 }
 
 .featured-products h3 {
   font-size: 16px;
   text-transform: uppercase;
+  padding-left: 12px;
+  font-weight: 500;
 }
 
-.swiper {
-  height: 500px;
+.slider-wrapper {
   width: 100%;
-  margin-top: 30px;
+  overflow: hidden;
 }
 
-.swiper-wrapper {
+.featured-products {
   width: 100%;
+  position: relative;
+  height: 630px;
+  padding-top: 70px;
+  padding-bottom: 130px;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 .swiper-slide {
-  background: #fff;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  min-width: 400px;
-  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  height: 450px;
+}
+
+.slide-content {
+  height: 100%;
+  width: 100%;
+  padding: 10px;
 }
 
 .img-container {
-  position: relative;
-  height: 375px;
-  width: 100%;
-  background: #eaeae8;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
   overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 85%;
+  background: #eaeae8;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img-container .product {
+  width: 85%;
+  height: 85%;
+  object-fit: contain;
 }
 
 .heart-icon {
@@ -62,22 +74,26 @@
   content: url("/img/serce-fill.png");
 }
 
-.img-container img {
-  max-width: 85%;
-  max-height: 85%;
-  object-fit: contain;
+.swiper-scrollbar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
 }
 
 .product-name,
 .product-price {
+  color: black;
   text-align: left;
   width: 100%;
 }
 
 .product-name {
   font-size: 20px;
-  font-weight: 600;
-  margin-top: 10px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 .product-price {
@@ -108,7 +124,7 @@
   color: black;
   padding: 5px 10px;
   border-radius: 12px;
-  font-weight: bold;
+  font-weight: 500;
   font-size: 16px;
   z-index: 10;
   text-transform: uppercase;
@@ -123,15 +139,16 @@
   background-size: 50%;
   background-position: center;
   background-repeat: no-repeat;
+  user-select: none;
 }
 
-.swiper-button-prev {
+.featured-products .swiper-button-prev {
   transform: rotate(180deg);
-  left: 25px;
+  left: 60px;
 }
 
-.swiper-button-next {
-  right: 25px;
+.featured-products .swiper-button-next {
+  right: 60px;
 }
 
 .swiper-button-next::after,
@@ -139,19 +156,12 @@
   display: none;
 }
 
-.swiper-button-next[tabindex="-1"],
-.swiper-button-prev[tabindex="-1"] {
+.swiper-button-disabled {
   display: none;
 }
 
-@media (max-width: 850px) {
-  section.featured-products {
-    padding: 16px;
-  }
-}
-
 @media (max-width: 470px) {
-  .swiper {
-    min-width: 600px;
+  .slide-content {
+    min-width: 350px;
   }
 }
