@@ -1,3 +1,5 @@
+const body = document.body;
+
 function scrollToSection(className) {
   const section = document.querySelector(`.${className}`);
 
@@ -25,6 +27,7 @@ function scrollToListing() {
 }
 
 function closeSidebar() {
+  body.style.overflowY = "";
   sidebar.classList.remove("active");
   overlay.classList.remove("active");
 }

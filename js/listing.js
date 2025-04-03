@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "img/kurtka5.png",
   ];
   const banner = document.querySelector(".banner");
+  let bannerInitiallyAdded = false;
 
   function createProductItem(i) {
     const productItem = document.createElement("div");
@@ -31,23 +32,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function updateProductGrid(itemsPerPage) {
     productGrid.innerHTML = "";
-
     const totalItems = parseInt(itemsPerPage);
 
     for (let i = 0; i < totalItems; i++) {
-      if (totalItems === 14 && i === 5) {
+      if (i === 5 && !bannerInitiallyAdded) {
         const bannerClone = banner.cloneNode(true);
         productGrid.appendChild(bannerClone);
       }
-
       const productItem = createProductItem(i);
       productGrid.appendChild(productItem);
     }
 
-    if (totalItems > 14) {
+    if (!bannerInitiallyAdded) {
+      bannerInitiallyAdded = true;
+    }
+
+    if (bannerInitiallyAdded) {
       banner.style.display = "none";
-    } else {
-      banner.style.display = "flex";
     }
   }
 
