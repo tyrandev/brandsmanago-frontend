@@ -1,8 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const productGrid = document.querySelector(".product-grid");
-  const productSelect = document.querySelector(
-    ".product-number-selection select"
-  );
+  const productSelect = document.querySelector(".product-number-selection select");
   const images = [
     "img/kurtka1.png",
     "img/kurtka2.png",
@@ -12,8 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
   const banner = document.querySelector(".banner");
   let bannerInitiallyAdded = false;
-  let totalItemsToLoad = 0;
   let currentItemsLoaded = 0;
+  let loadCount = parseInt(productSelect.value);
 
   function createProductItem(i) {
     const productItem = document.createElement("div");
@@ -32,56 +30,20 @@ document.addEventListener("DOMContentLoaded", function () {
     return productItem;
   }
 
-  function updateProductGrid(itemsPerPage) {
-    totalItemsToLoad = parseInt(itemsPerPage);
-    currentItemsLoaded = 0;
-    productGrid.innerHTML = "";
-    loadInitialProducts();
-  }
-
-  function loadInitialProducts() {
-    let initialLoadCount =
-      totalItemsToLoad === 24 || totalItemsToLoad === 36 ? 8 : 6;
-    if (bannerInitiallyAdded) {
-      initialLoadCount = 8;
-    }
-
-    for (let i = 0; i < initialLoadCount; i++) {
+  function loadMoreProducts() {
+    for (let i = currentItemsLoaded; i < currentItemsLoaded + loadCount; i++) {
       if (i === 5 && !bannerInitiallyAdded) {
         const bannerClone = banner.cloneNode(true);
         productGrid.appendChild(bannerClone);
         bannerInitiallyAdded = true;
+        banner.style.display = "none";
       }
 
       const productItem = createProductItem(i);
       productGrid.appendChild(productItem);
     }
 
-    if (bannerInitiallyAdded) {
-      banner.style.display = "none";
-    }
-
-    currentItemsLoaded = initialLoadCount;
-
-    if (totalItemsToLoad > initialLoadCount) {
-      window.addEventListener("scroll", onScroll);
-    }
-  }
-
-  function loadMoreProducts() {
-    const startIndex = currentItemsLoaded;
-    const endIndex = Math.min(currentItemsLoaded + 4, totalItemsToLoad);
-
-    for (let i = startIndex; i < endIndex; i++) {
-      const productItem = createProductItem(i);
-      productGrid.appendChild(productItem);
-    }
-
-    currentItemsLoaded = endIndex;
-
-    if (currentItemsLoaded >= totalItemsToLoad) {
-      window.removeEventListener("scroll", onScroll);
-    }
+    currentItemsLoaded += loadCount;
   }
 
   function onScroll() {
@@ -91,8 +53,13 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   productSelect.addEventListener("change", function () {
-    updateProductGrid(this.value);
+    productGrid.innerHTML = "";
+    currentItemsLoaded = 0;
+    bannerInitiallyAdded = false;
+    loadCount = parseInt(this.value);
+    loadMoreProducts();
   });
 
-  updateProductGrid(productSelect.value);
+  window.addEventListener("scroll", onScroll);
+  loadMoreProducts();
 });
