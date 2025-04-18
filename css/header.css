@@ -20,10 +20,6 @@ header {
   user-select: none;
 }
 
-/* .logo:hover {
-  content: url("/img/f-fill.png");
-} */
-
 .header-left {
   flex: 1;
   display: flex;

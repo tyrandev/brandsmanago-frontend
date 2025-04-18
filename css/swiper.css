@@ -17,13 +17,13 @@
 }
 
 .featured-products {
-  width: 100%;
-  position: relative;
-  height: 630px;
   padding-top: 70px;
   padding-bottom: 130px;
   padding-left: 30px;
   padding-right: 30px;
+  width: 100%;
+  position: relative;
+  height: 630px;
 }
 
 .swiper-slide {
@@ -69,10 +69,6 @@
   height: 18px;
   z-index: 10;
 }
-
-/* .heart-icon:hover {
-  content: url("/img/serce-fill.png");
-} */
 
 .swiper-scrollbar {
   position: absolute;
@@ -163,5 +159,20 @@
 @media (max-width: 470px) {
   .slide-content {
     min-width: 350px;
+  }
+}
+
+@media (max-width: 390px) {
+  .slide-content {
+    min-width: 325px;
+  }
+  .featured-products {
+    padding-bottom: 180px;
+  }
+  .featured-products .swiper-button-prev {
+    left: 50px;
+  }
+  .featured-products .swiper-button-next {
+    right: 50px;
   }
 }
