@@ -70,9 +70,9 @@
   z-index: 10;
 }
 
-.heart-icon:hover {
+/* .heart-icon:hover {
   content: url("/img/serce-fill.png");
-}
+} */
 
 .swiper-scrollbar {
   position: absolute;
