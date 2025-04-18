@@ -34,14 +34,10 @@ const swiper = new Swiper(".featured-products", {
 
 function updateNavigationButtons(swiper) {
   const prevButton = document.querySelector(".swiper-button-prev");
-  const nextButton = document.querySelector(".swiper-button-next");
 
   const firstSlideIndex = 0;
-  const lastSlideIndex = swiper.slides.length - swiper.loopedSlides;
 
-  console.log(
-    `Real Index: ${swiper.realIndex}, Last Slide Index: ${lastSlideIndex}`
-  );
+  console.log(`Real Index: ${swiper.realIndex}`);
 
   if (swiper.realIndex === firstSlideIndex) {
     prevButton.style.display = "none";
@@ -49,9 +45,4 @@ function updateNavigationButtons(swiper) {
     prevButton.style.display = "flex";
   }
 
-  if (swiper.realIndex === lastSlideIndex) {
-    nextButton.style.display = "none";
-  } else {
-    nextButton.style.display = "flex";
-  }
 }
