@@ -96,7 +96,6 @@ document.addEventListener("click", function (e) {
     }
   }
 
-  // Close popup when clicking the overlay or the popup itself
   if (e.target === overlay || e.target === popup) {
     closePopup();
   }
@@ -107,3 +106,8 @@ document.addEventListener("keydown", function (e) {
     closePopup();
   }
 });
+
+const closeWrapper = document.querySelector(".popup-close-wrapper");
+if (closeWrapper) {
+  closeWrapper.addEventListener("click", closePopup);
+}
