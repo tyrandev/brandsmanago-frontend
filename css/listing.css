@@ -27,6 +27,10 @@
   grid-auto-rows: 1fr;
 }
 
+.product-item {
+  cursor: pointer;
+}
+
 .product-item,
 .banner {
   background: #eaeae8;
@@ -106,6 +110,81 @@
   font-size: 14px;
   font-weight: bold;
   border-radius: 3px;
+}
+
+.popup-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.popup-header .close-img {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.popup-header .close-text {
+  cursor: pointer;
+}
+
+.product-popup {
+  position: fixed;
+  width: 840px;
+  height: 620px;
+  top: 230px;
+  left: 540px;
+  background: white;
+  border-radius: 6px;
+  padding: 32px;
+  gap: 24px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.popup-close-wrapper {
+  position: absolute;
+  top: 32px;
+  right: 32px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.popup-close-text {
+  font-weight: 500;
+  text-transform: uppercase;
+  color: black;
+}
+
+#popup-close-btn {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+}
+
+.popup-product-id {
+  position: absolute;
+  top: 32px;
+  left: 32px;
+  font-size: 18px;
+  font-weight: 500;
+  color: black;
+}
+
+.popup-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 
 @media (max-width: 1000px) {

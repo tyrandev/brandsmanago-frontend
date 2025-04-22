@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
   const productGrid = document.querySelector(".product-grid");
-  const productSelect = document.querySelector(".product-number-selection select");
+  const productSelect = document.querySelector(
+    ".product-number-selection select"
+  );
   const images = [
     "img/kurtka1.png",
     "img/kurtka2.png",
@@ -62,4 +64,46 @@ document.addEventListener("DOMContentLoaded", function () {
 
   window.addEventListener("scroll", onScroll);
   loadMoreProducts();
+});
+
+const popup = document.getElementById("productPopup");
+const popupId = document.getElementById("popupProductId");
+const popupImage = document.getElementById("popupProductImage");
+const overlay = document.getElementById("overlay");
+
+function openPopup(idText, imgSrc) {
+  popupId.textContent = idText;
+  popupImage.src = imgSrc;
+  popup.style.display = "flex";
+  overlay.style.display = "block";
+  document.body.style.overflow = "hidden";
+}
+
+function closePopup() {
+  popup.style.display = "none";
+  overlay.style.display = "none";
+  document.body.style.overflow = "";
+}
+
+document.addEventListener("click", function (e) {
+  const productItem = e.target.closest(".product-item");
+  if (productItem) {
+    const idSpan = productItem.querySelector(".product-id");
+    const img = productItem.querySelector("img");
+
+    if (idSpan && img) {
+      openPopup(idSpan.textContent, img.src);
+    }
+  }
+
+  // Close popup when clicking the overlay or the popup itself
+  if (e.target === overlay || e.target === popup) {
+    closePopup();
+  }
+});
+
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") {
+    closePopup();
+  }
 });
